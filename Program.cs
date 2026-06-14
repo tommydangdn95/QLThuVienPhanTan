@@ -33,6 +33,7 @@ namespace QLBaoDienTu
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddTransient<SeedData>();
 
             // ===== Authentication Cookie =====

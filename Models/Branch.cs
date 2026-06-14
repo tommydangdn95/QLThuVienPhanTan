@@ -1,8 +1,9 @@
-﻿namespace QLThuVienPhanTan.Models
+﻿using QLBaoDienTu.Models;
+
+namespace QLThuVienPhanTan.Models
 {
-    public class Branch
+    public class Branch : BaseModel
     {
-        public int BranchId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string? Phone { get; set; }
