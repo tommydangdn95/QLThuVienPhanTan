@@ -20,7 +20,7 @@ namespace QLThuVienPhanTan.Services
             var document = new Models.Document()
             {
                 Title = createDocument.Title,
-                DocumentType = createDocument.DocumentType.ToEnum<DocumentType>()!.Value,
+                DocumentType = createDocument.DocumentTypeId.ToEnum<DocumentType>()!.Value,
                 CreatedDate = DateTime.Now,
                 CreatedBy = submitUserId
             };

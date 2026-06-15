@@ -226,6 +226,14 @@
                             </a>
                         }
 
+                        @if (User.IsInRole(RoleConst.Admin) || User.IsInRole(RoleConst.Staff))
+                        {
+                            <a class="nav-link" asp-controller="document" asp-action="index">
+                                <div class="nav-link-icon"><i data-feather="file-text"></i></div>
+                                Document Management
+                            </a>
+                        }
+
                         @if (User.IsInRole(RoleConst.Admin))
                         {
                             <a class="nav-link" asp-controller="user" asp-action="index">

@@ -43,7 +43,9 @@ namespace QLBaoDienTu
 
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IBranchRepository, BranchRepository>();
+            builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
             builder.Services.AddScoped<IBranchService, BranchService>();
+            builder.Services.AddScoped<IDocumentService, DocumentService>();
             builder.Services.AddTransient<SeedData>();
 
             // ===== Authentication Cookie =====

@@ -1,4 +1,6 @@
-﻿namespace QLBaoDienTu.Dtos
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace QLBaoDienTu.Dtos
 {
     public class PagedResult<T>
     {
@@ -22,6 +24,11 @@
             var totalPages = Convert.ToDouble(totalRecords / pageSize);
             var roundedTotalPages = Convert.ToInt32(Math.Ceiling(totalPages));
             return roundedTotalPages;
+        }
+
+        public static PagedResult<T> Empty(int pageNumber = 1, int pageSize = 10)
+        {
+            return new PagedResult<T>(new List<T>(), 0, pageNumber, pageSize);
         }
     }
 }

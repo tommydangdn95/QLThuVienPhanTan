@@ -31,7 +31,7 @@ namespace QLBaoDienTu.Data
         {
             if (!await _dbContext.Roles.AnyAsync())
             {
-                var roleNames = new string[] { RoleConst.User, RoleConst.Admin };
+                var roleNames = new string[] { RoleConst.User, RoleConst.Admin, RoleConst.Staff };
                 foreach (var role in roleNames)
                 {
                     if (!await _roleManager.RoleExistsAsync(role))

@@ -1,4 +1,5 @@
 ﻿using QLBaoDienTu.Dtos;
+using QLThuVienPhanTan.Dtos.ApplicationDtos._Branch;
 using QLThuVienPhanTan.Repositories;
 using QLThuVienPhanTan.ViewModels._BranchViewModels;
 using IResult = QLBaoDienTu.Dtos.IResult;
@@ -33,6 +34,24 @@ namespace QLThuVienPhanTan.Services
             }
 
             return Result.Success("Create new branch successfully");
+        }
+
+        public async Task<IResultData<List<BranchItemDto>>> GetAllBranchAsync()
+        {
+            var pageResults = await _branchRepository.GetAllAsync();
+
+            var branchDtos = pageResults.Items.Select(b => new BranchItemDto
+            {
+                BranchId = b.Id,
+                Name = b.Name,
+                Address = b.Address,
+                Phone = b.Phone,
+                Email = b.Email,
+                Description = b.Description,
+                IsActive = b.IsActive
+            }).ToList();
+
+            return ResultData<List<BranchItemDto>>.SuccessData("Get all list branche successfully", branchDtos);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using QLBaoDienTu.Consts;
 using QLBaoDienTu.Dtos.Apis;
+using QLThuVienPhanTan.Enums;
 using QLThuVienPhanTan.Services;
-using QLThuVienPhanTan.ViewModels._BranchViewModels;
+using QLThuVienPhanTan.Utils;
 using QLThuVienPhanTan.ViewModels._DocumentViewModels;
 using System.Security.Claims;
 
@@ -14,20 +16,32 @@ namespace QLThuVienPhanTan.Controllers
     public class DocumentController : Controller
     {
         private readonly IDocumentService _documentService;
-        public DocumentController(IDocumentService documentService)
+        private readonly IBranchService _branchService;
+        public DocumentController(IDocumentService documentService, IBranchService branchService)
         {
             this._documentService = documentService;
+            this._branchService = branchService;
         }
 
         public IActionResult Index()
         {
+
             return View();
         }
 
         [HttpGet("create")]
-        public IActionResult CreateAsync()
+        public async Task<IActionResult> CreateAsync()
         {
-            return View();
+            var vm = new CreateDocument();
+            vm.ListDocumentType = EnumHelper.ToSelectList<DocumentType>();
+            var listBranches = await _branchService.GetAllBranchAsync();
+            vm.ListBranches = listBranches.Data.Select(b => new SelectListItem
+            {
+                Value = b.BranchId.ToString(),
+                Text = b.Name
+            }).ToList();
+
+            return View(vm);
         }
 
         [HttpPost("create")]

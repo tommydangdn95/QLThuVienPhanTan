@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using QLBaoDienTu.Data;
 using QLBaoDienTu.Models._Users;
 using QLBaoDienTu.ViewModels._AccountViewModels;
 

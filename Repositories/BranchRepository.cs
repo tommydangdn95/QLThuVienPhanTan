@@ -1,4 +1,6 @@
-﻿using QLBaoDienTu.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using QLBaoDienTu.Dtos;
+using QLBaoDienTu.Models;
 using QLThuVienPhanTan.Models;
 
 namespace QLThuVienPhanTan.Repositories
@@ -15,6 +17,17 @@ namespace QLThuVienPhanTan.Repositories
             await _appDbContext.Branchs.AddAsync(branch);
             var result = await _appDbContext.SaveChangesAsync();
             return result > 0;
+        }
+
+        public async Task<PagedResult<Branch>> GetAllAsync()
+        {
+            var branches = await _appDbContext.Branchs.Where(x => !x.IsDeleted).ToListAsync();
+            if (!branches.Any())
+            {
+                return PagedResult<Branch>.Empty();
+            }
+
+            return new PagedResult<Branch>(branches, branches.Count(), 1, 100000);
         }
     }
 }
