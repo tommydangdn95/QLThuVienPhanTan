@@ -9,6 +9,7 @@ using QLThuVienPhanTan.ViewModels._UserViewModels;
 namespace QLThuVienPhanTan.Controllers
 {
     [Authorize(Roles = RoleConst.Admin)]
+    [Route("[controller]")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;

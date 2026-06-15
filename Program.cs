@@ -4,6 +4,8 @@ using QLBaoDienTu.Data;
 using QLBaoDienTu.Models;
 using QLBaoDienTu.Models._Users;
 using QLBaoDienTu.Services;
+using QLThuVienPhanTan.Repositories;
+using QLThuVienPhanTan.Services;
 
 namespace QLBaoDienTu
 {
@@ -40,6 +42,8 @@ namespace QLBaoDienTu
                 .AddDefaultTokenProviders();
 
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IBranchRepository, BranchRepository>();
+            builder.Services.AddScoped<IBranchService, BranchService>();
             builder.Services.AddTransient<SeedData>();
 
             // ===== Authentication Cookie =====

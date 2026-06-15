@@ -220,6 +220,14 @@
 
                         @if (User.IsInRole(RoleConst.Admin))
                         {
+                            <a class="nav-link" asp-controller="branch" asp-action="index">
+                                <div class="nav-link-icon"><i data-feather="map-pin"></i></div>
+                                Branch Management
+                            </a>
+                        }
+
+                        @if (User.IsInRole(RoleConst.Admin))
+                        {
                             <a class="nav-link" asp-controller="user" asp-action="index">
                                 <div class="nav-link-icon"><i data-feather="grid"></i></div>
                                 User Management
