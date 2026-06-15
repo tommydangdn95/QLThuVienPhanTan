@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using QLBaoDienTu.Consts
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,7 +16,7 @@
         <!-- * * Tip * * You can use text or an image for your navbar brand.-->
         <!-- * * * * * * When using an image, we recommend the SVG format.-->
         <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a>
+        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="/">SB Admin Pro</a>
         <!-- Navbar Search Input-->
         <!-- * * Note: * * Visible only on and above the lg breakpoint-->
         <form class="form-inline me-auto d-none d-lg-block me-3">
@@ -165,8 +167,8 @@
                     <h6 class="dropdown-header d-flex align-items-center">
                         <img class="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png" />
                         <div class="dropdown-user-details">
-                            <div class="dropdown-user-details-name">Valerie Luna</div>
-                            <div class="dropdown-user-details-email">vluna@aol.com</div>
+                            <div class="dropdown-user-details-name">@User.Identity.Name</div>
+                            @* <div class="dropdown-user-details-email">vluna@aol.com</div> *@
                         </div>
                     </h6>
                     <div class="dropdown-divider"></div>
@@ -174,10 +176,17 @@
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
-                    <a class="dropdown-item" href="#!">
+                    <form asp-controller="Account" asp-action="LogOff" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="dropdown-item">
+                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
+                            Logout
+                        </button>
+                    </form>
+                    @* <a class="dropdown-item" href="#!">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
-                    </a>
+                    </a> *@
                 </div>
             </li>
         </ul>
@@ -208,11 +217,14 @@
 
                         <!-- Sidenav Menu Heading (Core)-->
                         <div class="sidenav-menu-heading">Main</div>
-                        
-                        <a class="nav-link" asp-controller="user" asp-action="index">
-                            <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                            User Management
-                        </a>
+
+                        @if (User.IsInRole(RoleConst.Admin))
+                        {
+                            <a class="nav-link" asp-controller="user" asp-action="index">
+                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                                User Management
+                            </a>
+                        }
 
                         <a class="nav-link" href="tables.html">
                             <div class="nav-link-icon"><i data-feather="filter"></i></div>

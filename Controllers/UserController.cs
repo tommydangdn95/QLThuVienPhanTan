@@ -23,7 +23,7 @@ namespace QLThuVienPhanTan.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("create")]
         public Task<IActionResult> Create()
         {
             var vm = new CreateUser();
@@ -31,7 +31,7 @@ namespace QLThuVienPhanTan.Controllers
             return Task.FromResult<IActionResult>(View(vm));
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateUserAsync(CreateUser createUser)
         {

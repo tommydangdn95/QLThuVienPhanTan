@@ -59,7 +59,7 @@ namespace QLBaoDienTu.Services
                 return Result.Failed($"Create user failed: {result.Errors.ToError()}");
             }
 
-            result = await _userManager.AddToRoleAsync(appUser, RoleConst.Admin);
+            result = await _userManager.AddToRoleAsync(appUser, role);
 
             if (!result.Succeeded)
             {
